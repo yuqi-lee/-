@@ -35,4 +35,5 @@
 #
 *.DS_Store
 .DS_Store
-.java
+*.class
+*/.DS_Store
