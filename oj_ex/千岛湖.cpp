@@ -5,13 +5,28 @@ void AscertainThisIsland(int i,int j,int size,bool** visited,char** lake)
 {
     visited[i][j] = true;
     if(i-1 >= 0 && lake[i-1][j] == '*' && visited[i-1][j] == false)
+    {
         AscertainThisIsland(i-1,j,size,visited,lake);
-    else if(i+1 < size && lake[i+1][j] == '*' && visited[i+1][j] == false)
+        //cout<<"\n x = "<<i+1<<"  y = "<<j+1<<"\n";
+    }
+        
+    if(i+1 < size && lake[i+1][j] == '*' && visited[i+1][j] == false)
+    {
         AscertainThisIsland(i+1,j,size,visited,lake);
-    else if(j-1 >= 0 && lake[i][j-1] == '*' && visited[i][j-1] == false)
+        //cout<<"\n x = "<<i+1<<"  y = "<<j+1<<"\n";
+    }
+
+    if(j-1 >= 0 && lake[i][j-1] == '*' && visited[i][j-1] == false)
+    {
         AscertainThisIsland(i,j-1,size,visited,lake);
-    else if(j+1 < size && lake[i][j+1] == '*' && visited[i][j+1] == false)
+        //cout<<"\n x = "<<i+1<<"  y = "<<j+1<<"\n";
+    }
+
+    if(j+1 < size && lake[i][j+1] == '*' && visited[i][j+1] == false)
+    {
         AscertainThisIsland(i,j+1,size,visited,lake);
+        //cout<<"\n x = "<<i+1<<"  y = "<<j+1<<"\n";
+    }    
 
     return;
 }
@@ -26,7 +41,7 @@ int main(){
     
     for(int i = 1 ; i < size ; i++)
     {
-        input[i] = (char*)malloc(sizeof(char) * size); 
+        input[i] = (char*)malloc(sizeof(char) * size + 1); 
         scanf("%s",input[i]);
     }
     
@@ -50,7 +65,9 @@ int main(){
                 visited[m][n] = true;
                 if(input[m][n] == '*')  //若是一块新岛，则下一步确定整块岛屿的大小，并计数
                 {
+                    //cout<<"\n x = "<<m<<"  y = "<<n<<"\n";
                     AscertainThisIsland(m,n,size,visited,input);
+                    
                     count++;
                     //cout<<"第"<<count<<"个岛坐标 ：("<<m<<","<<n<<")"<<endl;
                 }    
